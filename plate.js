@@ -1,52 +1,53 @@
-var plate = function(){
+var Plate = function(settings, background){
 
 
 	//settings
-	var ballElement = null;
+	var plateElement = null;
 	var bullets = [];
+	//Variable plate is creating a <div> in the html by calling the CSS class "plate".
+	var plate = $('<div/>').addClass('plate');
 
-	function walls() {
-		var x_right = parseInt(ballElement.style.left) + parseInt(ballElement.style.width);
-		var x_left = parseInt(ballElement.style.left);
-		var y_top =parseInt(ballElement.style.top);
-		var y_bottom = parseInt(ballElement.style.top) + parseInt(ballElement.style.height);
+	background.append(plate);
 
-		var w = parseInt(window.innerWidth);
-		var h = parseInt(window.innerHeight);
+
+	function walls() { //need to keep it to detect when 2 items are colliding
+		// var x_right = parseInt(plateElement.style.left) + parseInt(plateElement.style.width);
+		// var x_left = parseInt(plateElement.style.left);
+		// var y_top =parseInt(plateElement.style.top);
+		// var y_bottom = parseInt(plateElement.style.top) + parseInt(plateElement.style.height);
+
+		// var w = parseInt(window.innerWidth);
+		// var h = parseInt(window.innerHeight);
 		
 
-		if(y_bottom > h) {
- 			ballElement.style.bottom = (h - parseInt(ballElement.style.height)) + 'px';
-		}
-		if(y_top < 0) {
- 			ballElement.style.top = 0+'px';
- 		}
- 		if(x_right > w) {
- 			ballElement.style.right = (w - parseInt(ballElement.style.height)) + 'px);
- 		}
+		// if(y_bottom > h) {
+ 	// 		plateElement.style.bottom = (h - parseInt(plateElement.style.height)) + 'px';
+		// }
+		// if(y_top < 0) {
+ 	// 		plateElement.style.top = 0+'px';
+ 	// 	}
+ 	// 	if(x_right > w) {
+ 	// 		plateElement.style.right = (w - parseInt(plateElement.style.height)) + 'px';
+ 	// 		 		}
 
- 		if(x_left < 0) {
- 			ballElement.style.left = 0 + 'px';
- 		}
+ 	// 	if(x_left < 0) {
+ 	// 		plateElement.style.left = 0 + 'px';
+ 	// 	}
 
 
 
 	}
 
 
-
+// this function is solely for the player
 	function move(interactions) {
-		if(interactions.up) {
-			ballElement.style.top = parseInt(rebox.style.top)-8+"px";
-		}
-		if(interactions.down) {
-			ballElement.style.down = parseInt(rebox.style.top)-8+"px";
-		}
 		if(interactions.left) {
-			ballElement.style.left = parseInt(rebox.style.top)-8+"px";
+// jQuery has a library function called "animate" that takes plate and move it -5px to the left.
+// '1' is the animate time in milliseconds. 
+			plate.animate({left: '-=5'}, 1); 
 		}
 		if(interactions.right) {
-			ballElement.style.right = parseInt(rebox.style.top)-8+"px";
+			plate.animate({right: '+=5'}, 1);
 		}
 		if (settings.walls) {
 			walls();
@@ -55,37 +56,11 @@ var plate = function(){
 
 	}
 
-	function create() {
-		 // create the object asset
-	}
 
 
-
-	function init(){
-		// create();
-		var ballElement = document.getELementById('plate');
-		ballElement.style.top = '400px';
-      	ballElement.style.left = '400px';
-      	ballElement.style.height = '100px';
-
-    }
-
-
-
-
-	}
-
-
-
-	function
-
-
-
-
-
-	this.function render(inteactions){
+	this.render = function(interactions){
 		move(interactions);
 	}
 
-	init();
+	
 }

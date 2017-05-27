@@ -6,16 +6,23 @@ body {
 }
 
 .background img{
-    margin-top: 20px;
-    margin-left: 400px;
-	height: 700px;
-    position: 100%;
+    margin-top: 10px;
+    margin-left: 500px;
+    position: relative;
     display: block;
 }
-
-#plate img {
-	width: 100px;
-    top: 630px;
+/* the player avatar */
+.plate {
+	width: 270px;
+    height: 150px;
+    top: 600px;
+    left: 730px;
+    background-repeat: no-repeat;
     position: absolute;
-    left: 650px;
+    background-image: url(./images/plateBun.png);
 }
+
+
+
+
+

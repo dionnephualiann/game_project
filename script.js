@@ -3,7 +3,7 @@ var Game = function(){
 // Game settings
 
  var settings = {};
- settings.ballSpeed = 8;
+ settings.plateSpeed = 8;
  settings.walls = true;
  settings.automatic = false;
  settings.godmode = false;
@@ -20,40 +20,38 @@ var Game = function(){
  // World settings
 
  //Do not touch
-var assets = [];       // All game objects
-var player = new Ball(settings);     // The player
+var background = $('.background'); 
+var assets = [];       // All game objects that touches the stack. Those that doesn's meet the condition will fall according to gravity
+var player = new Plate(settings, background);     // The player
 assets[0] = player;
 var frame = 0;         // Frames since the start of the game
 
 
-// Interactions
+// Interactions. This is to set up the initializers. Nothing is moving when the game is
+// beinginitialised hence everything is set to false. So until the keys are being presed 
+// (which is why they have event listeners and are set to true) 
 var interactions= {};
-interactions.top = false; // top arrow key pressed
-interactions.bottom = false; // bottom arrow key pressed
-interactions.left = false; // left arrow key pressed
-interactions.right = false; // right arrow key pressed
-interactions.space = false; // space bar pressed
+interactions.left = false; 		// left arrow key pressed
+interactions.right = false; 	// right arrow key pressed
+
+
 
 
 
 // setup event listener
 function setupEvents (){
 
+// To stop the controls
 	document.addEventListener('keyup', function(event){
 		var keyName =event.key;
 
 		switch(keyName) {
 			case "ArrowRight":
-				interactions.right = true;
+				interactions.right = false;   //by setting it to false, 
+											  //the controls will stop functioning
 				break;
 			case "ArrowLeft":
-				interactions.left = true;
-				break;
-			case "ArrowUp":
-				interactions.up = true;
-				break;
-			case "ArrowDown":
-				interactions.down = true;
+				interactions.left = false;
 				break;
 			default:
 				break;
@@ -62,6 +60,7 @@ function setupEvents (){
 
 	});
 
+// To start the controls
 	  document.addEventListener('keydown', function(event){
         var keyName = event.key;
 
@@ -72,26 +71,20 @@ function setupEvents (){
           case "ArrowLeft":
               interactions.left = true;
               break;
-          case "ArrowUp":
-              interactions.up = true;
-              break;
-          case "ArrowDown":
-              interactions.down = true;
-              break;
           default:
               break;
         }
       });
-	
+
 }
 
 
 
 
 // Startup the game
-function init(){
+
   setupEvents();
-}
+
 
 
 
@@ -113,10 +106,28 @@ window.requestAnimFrame= (function() {
 		   	window.setTimeout(callback, 1000 / 60);
 		   };
 
+})();
+
+	(function animloop(){
+              requestAnimFrame(animloop);
+              render();
+            })();
 }
 
 
-}
 
 
-var newGame = game();
+
+var newGame = new Game();
+
+
+
+
+
+
+
+
+
+
+
+
