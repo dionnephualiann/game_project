@@ -47,7 +47,7 @@ var Plate = function(settings, background){
 			plate.animate({left: '-=5'}, 1); 
 		}
 		if(interactions.right) {
-			plate.animate({right: '+=5'}, 1);
+			plate.animate({left: '+=5'}, 1);
 		}
 		if (settings.walls) {
 			walls();

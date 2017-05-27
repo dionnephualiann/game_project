@@ -47,8 +47,9 @@ function setupEvents (){
 
 		switch(keyName) {
 			case "ArrowRight":
-				interactions.right = false;   //by setting it to false, 
-											  //the controls will stop functioning
+			//by setting it to false, 
+			//the controls will stop functioning
+				interactions.right = false;   	  
 				break;
 			case "ArrowLeft":
 				interactions.left = false;
