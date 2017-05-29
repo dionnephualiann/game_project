@@ -5,8 +5,9 @@ var Game = function(){
  var settings = {};
  settings.plateSpeed = 8;
  settings.walls = true;
- settings.automatic = false;
+ settings.automatic = true;
  settings.godmode = false;
+ settings.id = 0;
 
 
 
@@ -14,7 +15,7 @@ var Game = function(){
  var walls = false;  // plate cannot go out of the screen
  var automatic = false; // the plate will not move by itself
  var godmode = false; // allows developer to access any point of the game
-
+ 
 
  // World settings
 
@@ -23,10 +24,10 @@ var background = $('.background');
 var assets = [];       // All game objects that touches the stack. Those that doesn's meet the condition will fall according to gravity
 var player = new Plate(settings, background);     // The player
 assets[0] = player;
-var food = new Item(background);
+var food = new Item(background, settings);
 assets[1] = food;
 var frame = 0;         // Frames since the start of the game
-
+var timer = 0;
 
 // Interactions. This is to set up the initializers. Nothing is moving when the game is
 // being initialised hence everything is set to false. So until the keys are being presed 
@@ -36,7 +37,9 @@ interactions.left = false; 		// left arrow key pressed
 interactions.right = false; 	// right arrow key pressed
 
 
-
+function spawnItem() {
+	assets.push(new Item(background, settings));
+}
 
 
 
@@ -86,9 +89,9 @@ function setupEvents (){
 
 
 // Startup the game
-
-  setupEvents();
-  
+function init(){
+      setupEvents();
+    }
 
 
 // The render function. It will be called 60f/sec
@@ -96,6 +99,11 @@ function render(){
   for (var i =0; i < assets.length ; i++){
   	assets[i].render(interactions);
   }	
+  timer = frame / 60;
+  if(timer % 2 === 0) {
+  	spawnItem();
+  }
+  frame++;
 }
 
 
@@ -114,6 +122,8 @@ window.requestAnimFrame= (function() {
             render();
 
             })();
+
+            init();
 
 }
 
