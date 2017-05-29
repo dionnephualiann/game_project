@@ -7,22 +7,87 @@ body {
 
 .background img{
     margin-top: 10px;
-    margin-left: 500px;
+    margin-left: 430px;
     position: relative;
     display: block;
 }
 /* the player avatar */
 .plate {
-	width: 270px;
-    height: 150px;
-    top: 600px;
-    left: 730px;
+    width: 140px;
+    height: 80px;
+    top: 580px;
+    left: 680px;
+    padding: 0px;
+    border: 1px solid white;
     background-repeat: no-repeat;
     position: absolute;
     background-image: url(./images/plateBun.png);
 }
 
+.lettuce {
+	top: 0px;
+    padding: 0px;
+	width: 105px;
+	height: 57px;
+	background-repeat: no-repeat;
+	background-image: url(./images/lettuce.png);
+	border: 1px solid red;
+	position: absolute;
+}
 
+.cheese {
+	width: 105px;
+	height: 57px;
+	background-repeat: no-repeat;
+	background-image: url(./images/cheese.png);
+	border: 1px solid red;
+	position: absolute;
+}
+
+.meat {
+	width: 105px;
+	height: 57px;
+	background-repeat: no-repeat;
+	background-image: url(./images/meatPatty.png);
+	border: 1px solid red;
+	position: absolute;
+}
+
+.tomato {
+	width: 105px;
+	height: 57px;
+	background-repeat: no-repeat;
+	background-image: url(./images/tomato.png);
+	border: 1px solid red;
+	position: absolute;
+}
+
+.topBun {
+	width: 105px;
+	height: 57px;
+	background-repeat: no-repeat;
+	background-image: url(./images/bun_top.png);
+	border: 1px solid red;
+	position: absolute;
+}
+
+.chilliBomb {
+	width: 105px;
+	height: 57px;
+	background-repeat: no-repeat;
+	background-image: url(./images/chilliBomb.png);
+	border: 1px solid red;
+	position: absolute;
+}
+
+/*#start {
+	top: 300px;
+	width: 315px;
+	height: 182px;
+	display: inline;
+	background-image: url(./images/startButton.png);
+	background-repeat: no-repeat;
+}*/
 
 
 

@@ -10,7 +10,6 @@ var Game = function(){
 
 
 
-
  var foodSpeed = 8;  // speed of the food
  var walls = false;  // plate cannot go out of the screen
  var automatic = false; // the plate will not move by itself
@@ -24,15 +23,18 @@ var background = $('.background');
 var assets = [];       // All game objects that touches the stack. Those that doesn's meet the condition will fall according to gravity
 var player = new Plate(settings, background);     // The player
 assets[0] = player;
+var food = new Item(background);
+assets[1] = food;
 var frame = 0;         // Frames since the start of the game
 
 
 // Interactions. This is to set up the initializers. Nothing is moving when the game is
-// beinginitialised hence everything is set to false. So until the keys are being presed 
+// being initialised hence everything is set to false. So until the keys are being presed 
 // (which is why they have event listeners and are set to true) 
 var interactions= {};
 interactions.left = false; 		// left arrow key pressed
 interactions.right = false; 	// right arrow key pressed
+
 
 
 
@@ -82,20 +84,18 @@ function setupEvents (){
 
 
 
+
 // Startup the game
 
   setupEvents();
-
-
+  
 
 
 // The render function. It will be called 60f/sec
 function render(){
-
   for (var i =0; i < assets.length ; i++){
   	assets[i].render(interactions);
-  }
-	
+  }	
 }
 
 
@@ -110,9 +110,11 @@ window.requestAnimFrame= (function() {
 })();
 
 	(function animloop(){
-              requestAnimFrame(animloop);
-              render();
+            requestAnimFrame(animloop);
+            render();
+
             })();
+
 }
 
 
