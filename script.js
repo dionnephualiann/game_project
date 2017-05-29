@@ -11,7 +11,8 @@ var Game = function(){
 
 
 
- var foodSpeed = 8;  // speed of the food
+ var lettuceSpeed = 8;  // speed of the lettuce
+ var tomatoSpeed = 8
  var walls = false;  // plate cannot go out of the screen
  var automatic = false; // the plate will not move by itself
  var godmode = false; // allows developer to access any point of the game
@@ -24,8 +25,8 @@ var background = $('.background');
 var assets = [];       // All game objects that touches the stack. Those that doesn's meet the condition will fall according to gravity
 var player = new Plate(settings, background);     // The player
 assets[0] = player;
-var food = new Item(background, settings);
-assets[1] = food;
+
+
 var frame = 0;         // Frames since the start of the game
 var timer = 0;
 
@@ -37,8 +38,17 @@ interactions.left = false; 		// left arrow key pressed
 interactions.right = false; 	// right arrow key pressed
 
 
+//function to spawn food pushes them into the assets array.
 function spawnItem() {
-	assets.push(new Item(background, settings));
+	var random = Math.floor(Math.random(assets) * (2 - 1 +1)) + 1;
+	console.log(random);
+	
+		if (random === 1) {
+			assets.push(new Lettuce(background, settings));
+		} else if(random ===2) {
+			assets.push(new Tomato(background, settings));
+		}
+
 }
 
 
@@ -91,11 +101,12 @@ function setupEvents (){
 // Startup the game
 function init(){
       setupEvents();
+  
     }
 
 
 // The render function. It will be called 60f/sec
-function render(){
+this.render = function(){
   for (var i =0; i < assets.length ; i++){
   	assets[i].render(interactions);
   }	
@@ -106,7 +117,7 @@ function render(){
   frame++;
 }
 
-
+var self = this;
 window.requestAnimFrame= (function() {
 	return window.requestAnimationFrame    		||
 		   window.webkitRequestAnimationFrame	||
@@ -119,7 +130,7 @@ window.requestAnimFrame= (function() {
 
 	(function animloop(){
             requestAnimFrame(animloop);
-            render();
+            self.render();
 
             })();
 
