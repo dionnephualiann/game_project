@@ -6,14 +6,25 @@ var Chillibomb = function(background, settings){
 	this.id = settings.id;
 	
 	//this function checks if the div class "chilliBomb" has the id.
-	function create(){
+	this.create = function create(){
 		if($('chilliBomb #' + this.id)){
 			//for every new spawn, there is a new id number.
 			settings.id++;
 			this.id = settings.id;
 		}
+
+	var chilliBomb = $('<div/>').attr('id', this.id).addClass('chilliBomb')
+
+
  	//this will append the new spawned chilliBomb with it's ID to the background.
-	background.append("<div id='" + this.id + "' class ='chilliBomb'></div>");
+	background.append(chilliBomb);
+
+	// when you call 'new' something, 'this.' will call a member of an instance. 
+	// That way every item will have it's own bounding box
+	this.boundingBox = $('<div/>').addClass('rect2');
+
+	chilliBomb.append(this.boundingBox);
+
 	//this converts the ID number to a string.
 	chilliBombElement = document.getElementById((this.id).toString()); 
     chilliBombElement.style.left = '500px';
@@ -34,16 +45,12 @@ var Chillibomb = function(background, settings){
 		}
 	}
 
-	// this function initialises the variable = chilliBomb and calls create();
-	function init() {
-		create();
-	}
+	this.create();
 
 	this.render = function(){
 		//render function updates the movement into the Game Loop.
 		move();
 	}
-	//initialise var= chilliBomb
-	init();
+	
 
 }

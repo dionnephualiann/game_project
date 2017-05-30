@@ -6,14 +6,24 @@ var Tomato = function(background, settings){
 	this.id = settings.id;
 	
 	//this function checks if the div class "tomato" has the id.
-	function create(){
+	this.create = function create(){
 		if($('tomato #' + this.id)){
 			//for every new spawn, there is a new id number.
 			settings.id++;
 			this.id = settings.id;
 		}
+
+	var tomato = $('<div/>').attr('id', this.id).addClass('tomato')
+
  	//this will append the new spawned tomato with it's ID to the background.
-	background.append("<div id='" + this.id + "' class ='tomato'></div>");
+	background.append(tomato);
+
+	// when you call 'new' something, 'this.' will call a member of an instance. 
+	// That way every item will have it's own bounding box
+	this.boundingBox = $('<div/>').addClass('rect2');
+
+	tomato.append(this.boundingBox);
+
 	//this converts the ID number to a string.
 	tomatoElement = document.getElementById((this.id).toString()); 
     tomatoElement.style.left = '500px';
@@ -34,17 +44,13 @@ var Tomato = function(background, settings){
 		}
 	}
 
-	// this function initialises the variable = tomato and calls create();
-	function init() {
-		create();
-	}
+	this.create();
 
 	this.render = function(){
 		//render function updates the movement into the Game Loop.
 		move();
 	}
-	//initialise var= tomato
-	init();
+	
 }
 
 	

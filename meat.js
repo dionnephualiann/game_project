@@ -6,14 +6,24 @@ var Meat = function(background, settings){
 	this.id = settings.id;
 	
 	//this function checks if the div class "meat" has the id.
-	function create(){
+	this.create = function create(){
 		if($('meat #' + this.id)){
 			//for every new spawn, there is a new id number.
 			settings.id++;
 			this.id = settings.id;
 		}
+
+	var meat = $('<div/>').attr('id', this.id).addClass('meat')
+
  	//this will append the new spawned meat with it's ID to the background.
-	background.append("<div id='" + this.id + "' class ='meat'></div>");
+	background.append(meat);
+
+	// when you call 'new' something, 'this.' will call a member of an instance. 
+	// That way every item will have it's own bounding box
+	this.boundingBox = $('<div/>').addClass('rect2');
+
+	meat.append(this.boundingBox);
+
 	//this converts the ID number to a string.
 	meatElement = document.getElementById((this.id).toString()); 
     meatElement.style.left = '500px';
@@ -34,16 +44,12 @@ var Meat = function(background, settings){
 		}
 	}
 
-	// this function initialises the variable = meat and calls create();
-	function init() {
-		create();
-	}
+	this.create();
 
 	this.render = function(){
 		//render function updates the movement into the Game Loop.
 		move();
 	}
-	//initialise var = meat
-	init();
+	
 
 }

@@ -9,20 +9,23 @@ var Lettuce = function(background, settings){
 	this.id = settings.id;
 	
 	//this function checks if the div class "lettuce" has the id.
-	function create(){
+	this.create = function create(){
 		if($('lettuce #' + this.id)){
 			//for every new spawn, there is a new id number.
 			settings.id++;
 			this.id = settings.id;
 		}
+
  	//this will append the new spawned lettuce with it's ID to the background.
  	var lettuce = $('<div/>').attr('id', this.id).addClass('lettuce')
 
 	background.append(lettuce);
 
-	var rect2 = $('<div/>').addClass('rect2');
+	// when you call 'new' something, 'this.' will call a member of an instance. 
+	// That way every item will have it's own bounding box
+	this.boundingBox = $('<div/>').addClass('rect2');
 
-	lettuce.append(rect2);
+	lettuce.append(this.boundingBox);
 	
 
 	//this converts the ID number to a string.
@@ -46,16 +49,16 @@ var Lettuce = function(background, settings){
 	}
 
 	// this function initialises the variable = lettuce and calls create();
-	function init() {
-		create();
-	}
+
+	this.create();
+	
 
 	this.render = function(){
 		//render function updates the movement into the Game Loop.
 		move();
 	}
-	//initialise var= lettuce
-	init();
+	
+
 }
 
 	

@@ -43,7 +43,6 @@ interactions.right = false; 	// right arrow key pressed
 function spawnItem() {
 	//random chooses which asset to spawn
 	var random = Math.floor(Math.random(assets) * (5 - 1 +1)) + 1;
-	console.log(random);
 	
 		if (random === 1) {
 			assets.push(new Lettuce(background, settings));
@@ -59,6 +58,21 @@ function spawnItem() {
 
 }
 
+
+
+//collision detection
+  	var collision = function(rect1, rect2){
+
+
+  		if (rect1.offset().top < rect2.offset().top + rect2.width() &&
+   			rect1.offset().top + rect1.width() > rect2.offset().top &&
+   			rect1.offset().left < rect2.offset().left + rect2.height() &&
+   			rect1.height() + rect1.offset().left > rect2.offset().left) 
+  		{
+    		console.log("collision detected!");
+    		return true;
+    	}
+    }
 
 
 // setup event listener
@@ -121,8 +135,30 @@ this.render = function(){
   timer = frame / 60;
   if(timer % 2 === 0) {
   	spawnItem();
-  }
+  	 }
   frame++;
+
+// Creates an array of items that are currently "on the stack"
+var onStack = assets.filter(function(item) { return item.stacked; })
+
+// Creates an array of items that are *not* on the the stack
+var offStack = assets.filter(function(item) { return !item.stacked; })
+
+// Loop through all the off the stack items
+for (var i = 0; i < offStack.length; i++) {
+  // For each offstack item loop through each on stack item to see if they are colliding with them.
+  for (var j = 0; j < onStack.length; j++) {
+    // If the on the stack item and the off the stack item are colliding, 
+    // then we have an effect to handle/make.
+    if (collision(onStack[j].boundingBox, offStack[i].boundingBox)) {
+       // Simplest case is that it is a food item (not a top bun or chilli bomb in 
+       // which case we just make it part of the stack
+       // Stacked items are no longer affected by gravity and move with the plate.
+      offStack[i].stacked = true;
+    }
+  }
+}
+
 }
 
 var self = this;

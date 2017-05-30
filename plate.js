@@ -2,6 +2,10 @@ var Plate = function(settings, background){
 
 
 	//settings
+	
+	// this.stacked is the first stacked item. So by default it is the first stacked item, 
+	// without it. There is no collision.
+	this.stacked = true;
 	var plateElement = null;
 	var bullets = [];
 	//Variable plate is creating a <div> in the html by calling the CSS class "plate".
@@ -9,9 +13,11 @@ var Plate = function(settings, background){
 
 	background.append(plate);
 
-	var rect1 = $('<div/>').addClass('rect1')
+	// when you call 'new' something, 'this.' will call a member of an instance. 
+	// That way every item will have it's own bounding box
+	this.boundingBox = $('<div/>').addClass('rect1');
 
-	plate.append(rect1);
+	plate.append(this.boundingBox);
 
 
 	// function walls() { //need to keep it to detect when 2 items are colliding
