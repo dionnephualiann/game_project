@@ -25,16 +25,16 @@ var Tomato = function(background, settings){
 		}
 
 
-	// this sets the movement of the lettuce
+	// this sets the movement of the tomato
 	function move() {
 		//Set to automatic. (not controled by player)
 		if(settings.automatic) {
-			//lettuce is moving to margin-top: 0px to 800px at 2500 milliseconds. 
-			$(tomatoElement).animate({top: "+=10"},1);
+			//tomato is moving to 12px per milliseconds. 
+			$(tomatoElement).animate({top: "+=12"},1);
 		}
 	}
 
-	// this function initialises the variable = lettuce and calls create();
+	// this function initialises the variable = tomato and calls create();
 	function init() {
 		create();
 	}
@@ -43,7 +43,7 @@ var Tomato = function(background, settings){
 		//render function updates the movement into the Game Loop.
 		move();
 	}
-	//initialise var= lettuce
+	//initialise var= tomato
 	init();
 }
 

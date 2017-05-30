@@ -9,6 +9,10 @@ var Plate = function(settings, background){
 
 	background.append(plate);
 
+	var rect1 = $('<div/>').addClass('rect1')
+
+	plate.append(rect1);
+
 
 	// function walls() { //need to keep it to detect when 2 items are colliding
 	// 	var x_right = parseInt(plateElement.style.left) + parseInt(plateElement.style.width);

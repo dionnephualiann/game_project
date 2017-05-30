@@ -12,7 +12,8 @@ var Game = function(){
 
 
  var lettuceSpeed = 8;  // speed of the lettuce
- var tomatoSpeed = 8
+ var tomatoSpeed = 8;
+ var cheeseSpeed = 5;
  var walls = false;  // plate cannot go out of the screen
  var automatic = false; // the plate will not move by itself
  var godmode = false; // allows developer to access any point of the game
@@ -40,13 +41,20 @@ interactions.right = false; 	// right arrow key pressed
 
 //function to spawn food pushes them into the assets array.
 function spawnItem() {
-	var random = Math.floor(Math.random(assets) * (2 - 1 +1)) + 1;
+	//random chooses which asset to spawn
+	var random = Math.floor(Math.random(assets) * (5 - 1 +1)) + 1;
 	console.log(random);
 	
 		if (random === 1) {
 			assets.push(new Lettuce(background, settings));
-		} else if(random ===2) {
+		} else if(random === 2) {
 			assets.push(new Tomato(background, settings));
+		} else if(random === 3) {
+			assets.push(new Cheese(background, settings));
+		} else if(random === 4) {
+			assets.push(new Meat(background, settings));
+		} else if(random === 5) {
+			assets.push(new Chillibomb(background, settings));
 		}
 
 }

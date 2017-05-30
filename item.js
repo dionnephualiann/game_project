@@ -16,7 +16,15 @@ var Lettuce = function(background, settings){
 			this.id = settings.id;
 		}
  	//this will append the new spawned lettuce with it's ID to the background.
-	background.append("<div id='" + this.id + "' class ='lettuce'></div>");
+ 	var lettuce = $('<div/>').attr('id', this.id).addClass('lettuce')
+
+	background.append(lettuce);
+
+	var rect2 = $('<div/>').addClass('rect2');
+
+	lettuce.append(rect2);
+	
+
 	//this converts the ID number to a string.
 	lettuceElement = document.getElementById((this.id).toString()); 
     lettuceElement.style.left = '500px';
@@ -32,7 +40,7 @@ var Lettuce = function(background, settings){
 	function move() {
 		//Set to automatic. (not controled by player)
 		if(settings.automatic) {
-			//lettuce is moving to margin-top: 0px to 800px at 2500 milliseconds. 
+			//lettuce is moving to 5px per milliseconds. 
 			$(lettuceElement).animate({top: "+=5"},1);
 		}
 	}
