@@ -32,21 +32,31 @@ var Cheese = function(background, settings){
 	cheeseElement = document.getElementById((this.id).toString()); 
     cheeseElement.style.left = '500px';
 
-
 	//Math.random decides where the food will be spawned
 	cheeseElement.style.left = Math.floor(Math.random() * (900-500)) + 500 + 'px';
 
-		}
+	}
 
 
 	// this sets the movement of the cheese
-	function move() {
-		//Set to automatic. (not controled by player)
-		if(settings.automatic) {
-			//lettuce is moving to 7px per milliseconds.. 
-			$(cheeseElement).animate({top: "+=7"},1);
+	this.move = function move(interactions) {
+		if (this.stacked) {
+			//create logic that follows the plate
+				if(interactions.left) {
+					this.cheese.animate({left: '-=5'}, 1); 
+				}
+				if(interactions.right) {
+					this.cheese.animate({left: '+=5'}, 1);
+				}
 		}
+		//Set to automatic. (not controled by player)
+		else if(!this.stacked) {
+			//cheese is moving to 5px per milliseconds down the screen.
+			$(cheeseElement).animate({top: "+=7"},1);
+		} 
+
 	}
+
 
 	this.create();
 	this.removeSelf = function() { 
@@ -55,9 +65,9 @@ var Cheese = function(background, settings){
 	}
 
 
-	this.render = function(){
+	this.render = function(interactions){
 		//render function updates the movement into the Game Loop.
-		move();
+		this.move(interactions);
 	}
 	
 

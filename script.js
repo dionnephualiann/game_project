@@ -66,22 +66,8 @@ function spawnItem() {
 }
 
 
-
 //collision detection
   	var collision = function(rect1, rect2){
-
-      /*
-
-  		if (rect1.offset().top < rect2.offset().top + rect2.width() &&
-   			rect1.offset().top + rect1.width() > rect2.offset().top &&
-   			rect1.offset().left < rect2.offset().left + rect2.height() &&
-   			rect1.height() + rect1.offset().left > rect2.offset().left)
-  		{
-    		console.log("collision detected!");
-    		return true;
-    	}
-
-      */
 
       var rect1Native = rect1.get(0);
       var rect2Native = rect2.get(0);

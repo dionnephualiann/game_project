@@ -40,13 +40,24 @@ var Tomato = function(background, settings){
 
 
 	// this sets the movement of the tomato
-	function move() {
-		//Set to automatic. (not controled by player)
-		if(settings.automatic) {
-			//tomato is moving to 12px per milliseconds. 
-			$(tomatoElement).animate({top: "+=12"},1);
+	this.move = function move(interactions) {
+		if (this.stacked) {
+			//create logic that follows the plate
+				if(interactions.left) {
+					this.tomato.animate({left: '-=5'}, 1); 
+				}
+				if(interactions.right) {
+					this.tomato.animate({left: '+=5'}, 1);
+				}
 		}
+		//Set to automatic. (not controled by player)
+		else if(!this.stacked) {
+			//tomato is moving to 5px per milliseconds down the screen.
+			$(tomatoElement).animate({top: "+=11"},1);
+		} 
+
 	}
+
 
 	this.create();
 	this.removeSelf = function() { 
@@ -55,9 +66,9 @@ var Tomato = function(background, settings){
 	}
 
 
-	this.render = function(){
+	this.render = function(interactions){
 		//render function updates the movement into the Game Loop.
-		move();
+		this.move(interactions);
 	}
 	
 }

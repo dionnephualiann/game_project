@@ -13,9 +13,9 @@ var Meat = function(background, settings){
 			this.id = settings.id;
 		}
 
-	// Assigning score 
+	//Points to the Score object for the script.js
 	this.key = 'meat'
-	
+
     //this will assign a <div> the new spawned meat with it's ID to the background.
 	this.meat = $('<div/>').attr('id', this.id).addClass('meat')
 
@@ -38,15 +38,25 @@ var Meat = function(background, settings){
 
 		}
 
-
-	// this sets the movement of the meat
-	function move() {
-		//Set to automatic. (not controled by player)
-		if(settings.automatic) {
-			//lettuce is moving to 11px per milliseconds. 
-			$(meatElement).animate({top: "+=11"},1);
+// this sets the movement of the meat
+	this.move = function move(interactions) {
+		if (this.stacked) {
+			//create logic that follows the plate
+				if(interactions.left) {
+					this.meat.animate({left: '-=5'}, 1); 
+				}
+				if(interactions.right) {
+					this.meat.animate({left: '+=5'}, 1);
+				}
 		}
+		//Set to automatic. (not controled by player)
+		else if(!this.stacked) {
+			//meat is moving to 5px per milliseconds down the screen.
+			$(meatElement).animate({top: "+=11"},1);
+		} 
+
 	}
+	
 
 	this.create();
 	this.removeSelf = function() { 
@@ -55,9 +65,9 @@ var Meat = function(background, settings){
 	}
 
 
-	this.render = function(){
+	this.render = function(interactions){
 		//render function updates the movement into the Game Loop.
-		move();
+		this.move(interactions);
 	}
 	
 
