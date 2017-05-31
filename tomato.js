@@ -13,16 +13,18 @@ var Tomato = function(background, settings){
 			this.id = settings.id;
 		}
 
-	var tomato = $('<div/>').attr('id', this.id).addClass('tomato')
+	this.key = 'tomato'
+
+	this.tomato = $('<div/>').attr('id', this.id).addClass('tomato')
 
  	//this will append the new spawned tomato with it's ID to the background.
-	background.append(tomato);
+	background.append(this.tomato);
 
 	// when you call 'new' something, 'this.' will call a member of an instance. 
 	// That way every item will have it's own bounding box
 	this.boundingBox = $('<div/>').addClass('rect2');
 
-	tomato.append(this.boundingBox);
+	this.tomato.append(this.boundingBox);
 
 	//this converts the ID number to a string.
 	tomatoElement = document.getElementById((this.id).toString()); 
@@ -45,6 +47,11 @@ var Tomato = function(background, settings){
 	}
 
 	this.create();
+	this.removeSelf = function() { 
+	// Do removal logic 
+	 this.tomato.remove();
+	}
+
 
 	this.render = function(){
 		//render function updates the movement into the Game Loop.

@@ -8,6 +8,7 @@ var Game = function(){
  settings.automatic = true;
  settings.godmode = false;
  settings.id = 0;
+ settings.score = 0;
 
 
 
@@ -17,7 +18,6 @@ var Game = function(){
  var walls = false;  // plate cannot go out of the screen
  var automatic = false; // the plate will not move by itself
  var godmode = false; // allows developer to access any point of the game
- 
 
  // World settings
 
@@ -26,6 +26,13 @@ var background = $('.background');
 var assets = [];       // All game objects that touches the stack. Those that doesn's meet the condition will fall according to gravity
 var player = new Plate(settings, background);     // The player
 assets[0] = player;
+var Score = { lettuce: 10,
+			  meat: 15,
+			  tomato: 20,
+			  cheese: 5,
+			  bun: 50,
+			  chilli: 0,
+			};
 
 
 var frame = 0;         // Frames since the start of the game
@@ -73,6 +80,20 @@ function spawnItem() {
     		return true;
     	}
     }
+
+
+// Visibility function
+	var visibility = function() {
+		// i starts at [1] because, plate is alread [0]
+		for (var i = 1; i < assets.length; i++) {
+			//if asset is below 600px
+			assets[i].shouldRemove = (assets[i].boundingBox.offset().top >= 700)
+				// calling the function removeSlef which is .remove() inside the ingredient's js.
+ 				 if (assets[i].shouldRemove) assets[i].removeSelf()
+		}
+ 			//filters out the assets that aren't flagged.
+			assets = assets.filter(function (x) { return !x.shouldRemove; });
+	}
 
 
 // setup event listener
@@ -129,37 +150,45 @@ function init(){
 
 // The render function. It will be called 60f/sec
 this.render = function(){
-  for (var i =0; i < assets.length ; i++){
-  	assets[i].render(interactions);
-  }	
-  timer = frame / 60;
-  if(timer % 2 === 0) {
-  	spawnItem();
-  	 }
-  frame++;
+	  	for (var i =0; i < assets.length ; i++){
+	  	assets[i].render(interactions);
+		  }	
+		  timer = frame / 60;
+		  if(timer % 2 === 0) {
+		  	spawnItem();
+		  	 }
+		  frame++;
 
-// Creates an array of items that are currently "on the stack"
-var onStack = assets.filter(function(item) { return item.stacked; })
+		// Creates an array of items that are currently "on the stack"
+		var onStack = assets.filter(function(item) { return item.stacked; })
 
-// Creates an array of items that are *not* on the the stack
-var offStack = assets.filter(function(item) { return !item.stacked; })
+		// Creates an array of items that are *not* on the the stack
+		var offStack = assets.filter(function(item) { return !item.stacked; })
 
-// Loop through all the off the stack items
-for (var i = 0; i < offStack.length; i++) {
-  // For each offstack item loop through each on stack item to see if they are colliding with them.
-  for (var j = 0; j < onStack.length; j++) {
-    // If the on the stack item and the off the stack item are colliding, 
-    // then we have an effect to handle/make.
-    if (collision(onStack[j].boundingBox, offStack[i].boundingBox)) {
-       // Simplest case is that it is a food item (not a top bun or chilli bomb in 
-       // which case we just make it part of the stack
-       // Stacked items are no longer affected by gravity and move with the plate.
-      offStack[i].stacked = true;
-    }
-  }
-}
+		// Loop through all the off the stack items
+		for (var i = 0; i < offStack.length; i++) {
+		  // For each offstack item loop through each on stack item to see if they are colliding with them.
+		  for (var j = 0; j < onStack.length; j++) {
+		    // If the on the stack item and the off the stack item are colliding, 
+		    // then we have an effect to handle/make.
+		    if (collision(onStack[j].boundingBox, offStack[i].boundingBox)) {
+		    	//storing of the score
 
-}
+				function score(){
+					return settings.score += Score[offStack[j].key];
+				}
+		       // Simplest case is that it is a food item (not a top bun or chilli bomb in 
+		       // which case we just make it part of the stack
+		       // Stacked items are no longer affected by gravity and move with the plate.
+		      offStack[i].stacked = true;
+		      score();
+		    }
+		  }
+		}
+
+		visibility();
+
+		}
 
 var self = this;
 window.requestAnimFrame= (function() {

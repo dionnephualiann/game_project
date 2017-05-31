@@ -14,6 +14,8 @@ var Lettuce = function(background, settings){
 			this.id = settings.id;
 		}
 
+	//Assigning the score for the script.js
+	this.key = 'lettuce'
  	//this will append the new spawned lettuce with it's ID to the background.
  	this.lettuce = $('<div/>').attr('id', this.id).addClass('lettuce')
 
@@ -57,6 +59,11 @@ var Lettuce = function(background, settings){
 	// this function initialises the variable = lettuce and calls create();
 
 	this.create();
+	this.removeSelf = function() { 
+	// Do removal logic 
+	 this.lettuce.remove();
+	}
+
 
 
 	this.render = function(interactions){

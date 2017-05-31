@@ -13,16 +13,19 @@ var Meat = function(background, settings){
 			this.id = settings.id;
 		}
 
-	var meat = $('<div/>').attr('id', this.id).addClass('meat')
+	// Assigning score 
+	this.key = 'meat'
+
+	this.meat = $('<div/>').attr('id', this.id).addClass('meat')
 
  	//this will append the new spawned meat with it's ID to the background.
-	background.append(meat);
+	background.append(this.meat);
 
 	// when you call 'new' something, 'this.' will call a member of an instance. 
 	// That way every item will have it's own bounding box
 	this.boundingBox = $('<div/>').addClass('rect2');
 
-	meat.append(this.boundingBox);
+	this.meat.append(this.boundingBox);
 
 	//this converts the ID number to a string.
 	meatElement = document.getElementById((this.id).toString()); 
@@ -45,6 +48,11 @@ var Meat = function(background, settings){
 	}
 
 	this.create();
+	this.removeSelf = function() { 
+	// Do removal logic 
+	 this.meat.remove();
+	}
+
 
 	this.render = function(){
 		//render function updates the movement into the Game Loop.

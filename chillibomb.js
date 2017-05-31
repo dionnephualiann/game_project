@@ -13,17 +13,20 @@ var Chillibomb = function(background, settings){
 			this.id = settings.id;
 		}
 
-	var chilliBomb = $('<div/>').attr('id', this.id).addClass('chilliBomb')
+	// Assigning score 
+	this.key = 'chilli'
+
+	this.chilliBomb = $('<div/>').attr('id', this.id).addClass('chilliBomb')
 
 
  	//this will append the new spawned chilliBomb with it's ID to the background.
-	background.append(chilliBomb);
+	background.append(this.chilliBomb);
 
 	// when you call 'new' something, 'this.' will call a member of an instance. 
 	// That way every item will have it's own bounding box
 	this.boundingBox = $('<div/>').addClass('rect2');
 
-	chilliBomb.append(this.boundingBox);
+	this.chilliBomb.append(this.boundingBox);
 
 	//this converts the ID number to a string.
 	chilliBombElement = document.getElementById((this.id).toString()); 
@@ -46,6 +49,11 @@ var Chillibomb = function(background, settings){
 	}
 
 	this.create();
+	this.removeSelf = function() { 
+	// Do removal logic 
+	 this.chilliBomb.remove();
+	}
+
 
 	this.render = function(){
 		//render function updates the movement into the Game Loop.

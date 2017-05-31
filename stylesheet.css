@@ -18,7 +18,7 @@ body {
     top: 580px;
     left: 680px;
     padding: 0px;
-    border: 1px solid white;
+  /*  border: 1px solid white;*/
     background-repeat: no-repeat;
     position: absolute;
     background-image: url(./images/plateBun.png);
@@ -31,7 +31,7 @@ body {
 	height: 57px;
 	background-repeat: no-repeat;
 	background-image: url(./images/lettuce.png);
-	border: 1px solid red;
+	/*border: 1px solid red;*/
 	position: absolute;
 }
 
