@@ -5,20 +5,47 @@ body {
 	background-color: #1b1b1b;
 }
 
-.background img{
+.background {
+	height:680px;
+	width: 581px;
     margin-top: 10px;
     margin-left: 430px;
     position: relative;
     display: block;
+    background-image: url(./images/gameBG.png);
 }
+
+.score {
+	height:680px;
+	width: 581px;
+	margin-top: 10px;
+    margin-left: 430px;
+    position: relative;
+    display: block;
+    background-image: url(./images/scorePage.png);
+    background-repeat: no-repeat;
+}
+
+.number {
+	margin-left: 250px;
+	position: absolute;
+    top: 300px;
+	text-align: center;
+	font-size: 60px;
+	font-family: Futura;
+	color: #fffbb7;
+}
+    
+
 /* the player avatar */
 .plate {
     width: 140px;
     height: 80px;
     top: 580px;
-    left: 680px;
+    left: 250px;
     padding: 0px;
-    /*border: 1px solid white;*/
+    border: 1px solid;
+	border-color: rgba(255, 0, 0, 1);
     background-repeat: no-repeat;
     position: absolute;
     background-image: url(./images/plateBun.png);
@@ -31,7 +58,7 @@ body {
 	height: 57px;
 	background-repeat: no-repeat;
 	background-image: url(./images/lettuce.png);
-	/*border: 1px solid red;*/
+	border: 1px solid (255, 0, 0, 1);
 	position: absolute;
 }
 
@@ -41,7 +68,8 @@ body {
 	height: 57px;
 	background-repeat: no-repeat;
 	background-image: url(./images/cheese.png);
-	/*border: 1px solid red;*/
+	border: 1px solid;
+	border-color: rgba(255, 0, 0, 1);
 	position: absolute;
 }
 
@@ -51,7 +79,8 @@ body {
 	height: 57px;
 	background-repeat: no-repeat;
 	background-image: url(./images/meatPatty.png);
-	/*border: 1px solid red;*/
+	border: 1px solid;
+	border-color: rgba(255, 0, 0, 0);
 	position: absolute;
 }
 
@@ -61,7 +90,8 @@ body {
 	height: 57px;
 	background-repeat: no-repeat;
 	background-image: url(./images/tomato.png);
-	/*border: 1px solid red;*/
+	border: 1px solid;
+	border-color: rgba(255, 0, 0, 0);
 	position: absolute;
 }
 
@@ -71,7 +101,8 @@ body {
 	height: 57px;
 	background-repeat: no-repeat;
 	background-image: url(./images/bun_top.png);
-	/*border: 1px solid red;*/
+	border: 1px solid;
+	border-color: rgba(255, 0, 0, 0);
 	position: absolute;
 }
 
@@ -81,14 +112,16 @@ body {
 	height: 57px;
 	background-repeat: no-repeat;
 	background-image: url(./images/chilliBomb.png);
-	/*border: 1px solid red;*/
+	border: 1px solid;
+	border-color: rgba(255, 0, 0, 0);
 	position: absolute;
 }
 
 .rect1{
 	top: 20px;
 	left: 32px;
-	/*border: 1px solid red;*/
+	border: 1px solid;
+	border-color: rgba(255, 0, 0, 1);
 	position: relative;
 	width: 80px;
 	height: 30px;
@@ -97,7 +130,8 @@ body {
 .rect2{
 	top: 15px;
 	left: 9px;
-	/*border: 1px solid blue;*/
+	border: 1px solid;
+	border-color: rgba(255, 0, 0, 1);
 	position: relative;
 	width: 85px;
 	height: 20px;

@@ -16,7 +16,7 @@ var Lettuce = function(background, settings){
 
 	//Points to the Score object for the script.js
 	this.key = 'lettuce'
-	
+
  	//this will assign a <div> the new spawned lettuce with it's ID to the background.
  	this.lettuce = $('<div/>').attr('id', this.id).addClass('lettuce')
 
@@ -30,10 +30,10 @@ var Lettuce = function(background, settings){
 	
 	//this converts the ID number to a string.
 	lettuceElement = document.getElementById((this.id).toString()); 
-    lettuceElement.style.left = '500px';
+    lettuceElement.style.left = '250px';
 
 	//Math.random decides where the food will be spawned
-	lettuceElement.style.left = Math.floor(Math.random() * (900-500)) + 500 + 'px';
+	lettuceElement.style.left = Math.floor(Math.random() * (800-200)) + 200 + 'px';
 
 	}
 

@@ -9,6 +9,7 @@ var Game = function(){
  settings.godmode = false;
  settings.id = 0;
  settings.score = 0;
+ settings.gameOver = false;
 
 
 
@@ -22,17 +23,17 @@ var Game = function(){
  // World settings
 
  //Do not touch
-var background = $('.background');
+var background = $('#background');
 var assets = [];       // All game objects that touches the stack. Those that doesn's meet the condition will fall according to gravity
 var player = new Plate(settings, background);     // The player
 assets[0] = player;
 var Score = { lettuce: 10,
-      			  meat: 15,
-			        tomato: 20,
-			        cheese: 5,
-			        bun: 50,
-			        chilli: 0,
-			      };
+      		  meat: 15,
+			  tomato: 20,
+			  cheese: 5,
+			  topBun: 50,
+			  chilli: 0,
+			};
 
 
 var frame = 0;         // Frames since the start of the game
@@ -68,7 +69,7 @@ function spawnItem() {
 }
 
 
-//collision detection
+//collision detection *** has an overlapping issue
   	var collision = function(rect1, rect2){
 
       var rect1Native = rect1.get(0);
@@ -91,11 +92,11 @@ function spawnItem() {
 
 
 // Visibility function
-	var visibility = function() {
+	var visibility = function(clearAll) {
 		// i starts at [1] because, plate is already index [0]
 		for (var i = 1; i < assets.length; i++) {
 			//if asset is below 600px
-			assets[i].shouldRemove = (assets[i].boundingBox.offset().top >= 700)
+			assets[i].shouldRemove = (assets[i].boundingBox.offset().top >= 700) || clearAll;
 				// calling the function removeSelf which is .remove() inside the ingredient's js.
  				 if (assets[i].shouldRemove) assets[i].removeSelf()
 		}
@@ -155,6 +156,9 @@ function init(){
 
 // The render function. It will be called 60f/sec
 this.render = function(){
+		if(settings.gameOver){
+			return;
+		}
 	  	for (var i =0; i < assets.length ; i++){
 	  	assets[i].render(interactions);
 		  }
@@ -170,6 +174,7 @@ this.render = function(){
 		// Creates an array of items that are NOT-on-the-stack
 		var offStack = assets.filter(function(item) { return !item.stacked; })
 
+		var clearAll = false;
 		// Loop through all the off the stack items
 		for (var i = 0; i < offStack.length; i++) {
 		  // For each offstack item loop through each on stack item to see if they are colliding with them.
@@ -177,7 +182,16 @@ this.render = function(){
 		    // If the on the stack item and the off the stack item are colliding,
 		    // then we have an effect to handle/make.
 		    if (collision(onStack[j].boundingBox, offStack[i].boundingBox)) {
+		    	if(offStack[i].key === "chilli") {
+		    		score();
+		    		settings.gameOver = true;
+		    		$("#background").removeClass("background").addClass("score").append($("<div/>").addClass("number").text(settings.score));
+		    		break;
+		    	}
 
+		    	if(offStack[i].key === "topBun") {
+		    		clearAll = true;
+		    	}
 		    	//storing of the score
   				function score(){
   					return settings.score += Score[offStack[i].key];
@@ -188,10 +202,11 @@ this.render = function(){
 		      offStack[i].stacked = true;
 		      score();
 		    }
-		  }
+		  } if(settings.gameOver)
+		  break;
 		}
 
-		visibility();
+		visibility(clearAll);
 
 		}
 

@@ -30,31 +30,19 @@ var Chillibomb = function(background, settings){
 
 	//this converts the ID number to a string.
 	chilliBombElement = document.getElementById((this.id).toString()); 
-    chilliBombElement.style.left = '500px';
+    chilliBombElement.style.left = '250px';
 
 
 	//Math.random decides where the food will be spawned
-	chilliBombElement.style.left = Math.floor(Math.random() * (900-500)) + 500 + 'px';
+	chilliBombElement.style.left = Math.floor(Math.random() * (800-250)) + 250 + 'px';
 
 		}
 
 
 	// this sets the movement of the lettuce
 	this.move = function move(interactions) {
-		if (this.stacked) {
-		// 	**create logic that doesn't call render function
-			if(interactions.left) {
-					this.chilliBomb.animate({left: '-=5'}, 1); 
-				}
-				if(interactions.right) {
-					this.chilliBomb.animate({left: '+=5'}, 1);
-				}
-
-		// 	**create a drawScore Function. print score out using innerHtml
-
-		}
 		//Set to automatic. (not controled by player)
-		else if(!this.stacked) {
+		if(!this.stacked) {
 			//lettuce is moving to 15px per milliseconds down the screen.
 			$(chilliBombElement).animate({top: "+=15"},1);
 		} 

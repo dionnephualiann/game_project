@@ -30,11 +30,11 @@ var TopBun = function(background, settings){
 
 	//this converts the ID number to a string.
 	topBunElement = document.getElementById((this.id).toString()); 
-    topBunElement.style.left = '500px';
+    topBunElement.style.left = '250px';
 
 
 	//Math.random decides where the food will be spawned
-	topBunElement.style.left = Math.floor(Math.random() * (900-500)) + 500 + 'px';
+	topBunElement.style.left = Math.floor(Math.random() * (600-250)) + 250 + 'px';
 
 		}
 
@@ -44,6 +44,8 @@ var TopBun = function(background, settings){
 		if (this.stacked) {
 		// 	**create logic that doesn't call render function ON the ingredients including itself.
 		// 	**create another function that will render out the plate.
+		
+		
 			if(interactions.left) {
 						this.topBun.animate({left: '-=5'}, 1); 
 					}
