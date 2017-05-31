@@ -70,7 +70,6 @@ function spawnItem() {
 //collision detection
   	var collision = function(rect1, rect2){
 
-
   		if (rect1.offset().top < rect2.offset().top + rect2.width() &&
    			rect1.offset().top + rect1.width() > rect2.offset().top &&
    			rect1.offset().left < rect2.offset().left + rect2.height() &&
@@ -84,11 +83,11 @@ function spawnItem() {
 
 // Visibility function
 	var visibility = function() {
-		// i starts at [1] because, plate is alread [0]
+		// i starts at [1] because, plate is already index [0]
 		for (var i = 1; i < assets.length; i++) {
 			//if asset is below 600px
 			assets[i].shouldRemove = (assets[i].boundingBox.offset().top >= 700)
-				// calling the function removeSlef which is .remove() inside the ingredient's js.
+				// calling the function removeSelf which is .remove() inside the ingredient's js.
  				 if (assets[i].shouldRemove) assets[i].removeSelf()
 		}
  			//filters out the assets that aren't flagged.
@@ -138,9 +137,6 @@ function setupEvents (){
 }
 
 
-
-
-
 // Startup the game
 function init(){
       setupEvents();
@@ -159,10 +155,10 @@ this.render = function(){
 		  	 }
 		  frame++;
 
-		// Creates an array of items that are currently "on the stack"
+		// Creates an array of items that are currently "on-the-stack"
 		var onStack = assets.filter(function(item) { return item.stacked; })
 
-		// Creates an array of items that are *not* on the the stack
+		// Creates an array of items that are NOT-on-the-stack
 		var offStack = assets.filter(function(item) { return !item.stacked; })
 
 		// Loop through all the off the stack items
@@ -172,8 +168,8 @@ this.render = function(){
 		    // If the on the stack item and the off the stack item are colliding, 
 		    // then we have an effect to handle/make.
 		    if (collision(onStack[j].boundingBox, offStack[i].boundingBox)) {
+		    	
 		    	//storing of the score
-
 				function score(){
 					return settings.score += Score[offStack[j].key];
 				}
@@ -189,6 +185,7 @@ this.render = function(){
 		visibility();
 
 		}
+
 
 var self = this;
 window.requestAnimFrame= (function() {
@@ -210,9 +207,6 @@ window.requestAnimFrame= (function() {
             init();
 
 }
-
-
-
 
 
 var newGame = new Game();

@@ -15,7 +15,7 @@ var Chillibomb = function(background, settings){
 
 	// Assigning score 
 	this.key = 'chilli'
-
+	//this will assign a <div> the new spawned chilliBomb with it's ID to the background.
 	this.chilliBomb = $('<div/>').attr('id', this.id).addClass('chilliBomb')
 
 

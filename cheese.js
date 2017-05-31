@@ -13,9 +13,10 @@ var Cheese = function(background, settings){
 			this.id = settings.id;
 		}
 
-	// Assigning score 
+    //Points to the Score object for the script.js
 	this.key = 'cheese'
 
+	//this will assign a <div> to the new spawned cheese with it's ID to the background.
 	this.cheese = $('<div/>').attr('id', this.id).addClass('cheese')
 
  	//this will append the new spawned cheese with it's ID to the background.

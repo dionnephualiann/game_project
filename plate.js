@@ -1,10 +1,10 @@
 var Plate = function(settings, background){
 
 
-	//settings
-	
-	// this.stacked is the first stacked item. So by default it is the first stacked item, 
-	// without it. There is no collision.
+	//SETTINGS
+
+	// this.stacked is the first stacked item. So by default it is the first  
+	// stacked item, without it. There is no collision.
 	this.stacked = true;
 	var plateElement = null;
 	var bullets = [];
@@ -26,8 +26,6 @@ var Plate = function(settings, background){
 		
 	// 	var w = parseInt(background.width);
 	// 	var h = parseInt(background.height);
-		
-
 
  // 		if(x_right > w) {
  // 			plateElement.style.right = (w - parseInt(plateElement.style.height)) + 'px';
@@ -37,16 +35,14 @@ var Plate = function(settings, background){
  // 			plateElement.style.left = 0 + 'px';
  // 		}
 
-
-
 	// }
 
 
 // this function is solely for the player to move the plate around manually.
 	function move(interactions) {
 		if(interactions.left) {
-// jQuery has a library function called "animate" that takes plate and move it -5px to the left.
-// '1' is the animate time in milliseconds. 
+// jQuery has a library function called "animate" that takes plate and move it -5px 
+// to the left. '1' is the animation time in milliseconds. 
 			plate.animate({left: '-=5'}, 1); 
 		}
 		if(interactions.right) {
@@ -55,13 +51,10 @@ var Plate = function(settings, background){
 		// if (settings.walls) {
 		// 	walls();
 		// }
-
-
 	}
 
 	this.render = function(interactions){
 		move(interactions);
 	}
-
 
 }

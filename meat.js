@@ -15,7 +15,8 @@ var Meat = function(background, settings){
 
 	// Assigning score 
 	this.key = 'meat'
-
+	
+    //this will assign a <div> the new spawned meat with it's ID to the background.
 	this.meat = $('<div/>').attr('id', this.id).addClass('meat')
 
  	//this will append the new spawned meat with it's ID to the background.

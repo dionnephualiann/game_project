@@ -13,8 +13,10 @@ var Tomato = function(background, settings){
 			this.id = settings.id;
 		}
 
+	//Points to the Score object for the script.js
 	this.key = 'tomato'
 
+	//this will assign a <div> the new spawned lettuce with it's ID to the background.
 	this.tomato = $('<div/>').attr('id', this.id).addClass('tomato')
 
  	//this will append the new spawned tomato with it's ID to the background.

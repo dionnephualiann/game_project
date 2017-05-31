@@ -14,9 +14,10 @@ var Lettuce = function(background, settings){
 			this.id = settings.id;
 		}
 
-	//Assigning the score for the script.js
+	//Points to the Score object for the script.js
 	this.key = 'lettuce'
- 	//this will append the new spawned lettuce with it's ID to the background.
+	
+ 	//this will assign a <div> the new spawned lettuce with it's ID to the background.
  	this.lettuce = $('<div/>').attr('id', this.id).addClass('lettuce')
 
 	background.append(this.lettuce);
@@ -50,13 +51,13 @@ var Lettuce = function(background, settings){
 		}
 		//Set to automatic. (not controled by player)
 		else if(!this.stacked) {
-			//lettuce is moving to 5px per milliseconds. 
+			//lettuce is moving to 5px per milliseconds down the screen.
 			$(lettuceElement).animate({top: "+=5"},1);
 		} 
 
 	}
 
-	// this function initialises the variable = lettuce and calls create();
+	// this function initialises the variable = lettuce and calls create() and removeSelf();
 
 	this.create();
 	this.removeSelf = function() { 
