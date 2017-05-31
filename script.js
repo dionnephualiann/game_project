@@ -22,25 +22,25 @@ var Game = function(){
  // World settings
 
  //Do not touch
-var background = $('.background'); 
+var background = $('.background');
 var assets = [];       // All game objects that touches the stack. Those that doesn's meet the condition will fall according to gravity
 var player = new Plate(settings, background);     // The player
 assets[0] = player;
 var Score = { lettuce: 10,
-			  meat: 15,
-			  tomato: 20,
-			  cheese: 5,
-			  bun: 50,
-			  chilli: 0,
-			};
+      			  meat: 15,
+			        tomato: 20,
+			        cheese: 5,
+			        bun: 50,
+			        chilli: 0,
+			      };
 
 
 var frame = 0;         // Frames since the start of the game
 var timer = 0;
 
 // Interactions. This is to set up the initializers. Nothing is moving when the game is
-// being initialised hence everything is set to false. So until the keys are being presed 
-// (which is why they have event listeners and are set to true) 
+// being initialised hence everything is set to false. So until the keys are being presed
+// (which is why they have event listeners and are set to true)
 var interactions= {};
 interactions.left = false; 		// left arrow key pressed
 interactions.right = false; 	// right arrow key pressed
@@ -50,7 +50,7 @@ interactions.right = false; 	// right arrow key pressed
 function spawnItem() {
 	//random chooses which asset to spawn
 	var random = Math.floor(Math.random(assets) * (5 - 1 +1)) + 1;
-	
+
 		if (random === 1) {
 			assets.push(new Lettuce(background, settings));
 		} else if(random === 2) {
@@ -70,14 +70,40 @@ function spawnItem() {
 //collision detection
   	var collision = function(rect1, rect2){
 
+      /*
+
   		if (rect1.offset().top < rect2.offset().top + rect2.width() &&
    			rect1.offset().top + rect1.width() > rect2.offset().top &&
    			rect1.offset().left < rect2.offset().left + rect2.height() &&
-   			rect1.height() + rect1.offset().left > rect2.offset().left) 
+   			rect1.height() + rect1.offset().left > rect2.offset().left)
   		{
     		console.log("collision detected!");
     		return true;
     	}
+
+      */
+
+      var rect1Native = rect1.get(0);
+      var rect2Native = rect2.get(0);
+
+      var rect1NativeRect = rect1Native.getBoundingClientRect();
+      var rect2NativeRect = rect2Native.getBoundingClientRect();
+
+      if (rect1NativeRect.left < rect2NativeRect.left + rect2NativeRect.width &&
+          rect1NativeRect.left + rect1NativeRect.width > rect2NativeRect.left &&
+          rect1NativeRect.top < rect2NativeRect.top + rect2NativeRect.height &&
+          rect1NativeRect.height + rect1NativeRect.top > rect2NativeRect.top)
+      {
+
+        console.log("collision detected!");
+        return true;
+      }
+
+
+
+
+
+
     }
 
 
@@ -104,9 +130,9 @@ function setupEvents (){
 
 		switch(keyName) {
 			case "ArrowRight":
-			//by setting it to false, 
+			//by setting it to false,
 			//the controls will stop functioning
-				interactions.right = false;   	  
+				interactions.right = false;
 				break;
 			case "ArrowLeft":
 				interactions.left = false;
@@ -140,7 +166,7 @@ function setupEvents (){
 // Startup the game
 function init(){
       setupEvents();
-  
+
     }
 
 
@@ -148,7 +174,7 @@ function init(){
 this.render = function(){
 	  	for (var i =0; i < assets.length ; i++){
 	  	assets[i].render(interactions);
-		  }	
+		  }
 		  timer = frame / 60;
 		  if(timer % 2 === 0) {
 		  	spawnItem();
@@ -165,15 +191,15 @@ this.render = function(){
 		for (var i = 0; i < offStack.length; i++) {
 		  // For each offstack item loop through each on stack item to see if they are colliding with them.
 		  for (var j = 0; j < onStack.length; j++) {
-		    // If the on the stack item and the off the stack item are colliding, 
+		    // If the on the stack item and the off the stack item are colliding,
 		    // then we have an effect to handle/make.
 		    if (collision(onStack[j].boundingBox, offStack[i].boundingBox)) {
-		    	
+
 		    	//storing of the score
-				function score(){
-					return settings.score += Score[offStack[j].key];
-				}
-		       // Simplest case is that it is a food item (not a top bun or chilli bomb in 
+  				function score(){
+  					return settings.score += Score[offStack[i].key];
+  				}
+		       // Simplest case is that it is a food item (not a top bun or chilli bomb in
 		       // which case we just make it part of the stack
 		       // Stacked items are no longer affected by gravity and move with the plate.
 		      offStack[i].stacked = true;
@@ -210,15 +236,3 @@ window.requestAnimFrame= (function() {
 
 
 var newGame = new Game();
-
-
-
-
-
-
-
-
-
-
-
-
