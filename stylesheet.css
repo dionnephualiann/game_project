@@ -18,7 +18,7 @@ body {
     top: 580px;
     left: 680px;
     padding: 0px;
-    border: 1px solid white;
+    /*border: 1px solid white;*/
     background-repeat: no-repeat;
     position: absolute;
     background-image: url(./images/plateBun.png);
@@ -31,8 +31,7 @@ body {
 	height: 57px;
 	background-repeat: no-repeat;
 	background-image: url(./images/lettuce.png);
-
-	border: 1px solid red;
+	/*border: 1px solid red;*/
 	position: absolute;
 }
 
@@ -42,7 +41,7 @@ body {
 	height: 57px;
 	background-repeat: no-repeat;
 	background-image: url(./images/cheese.png);
-	border: 1px solid red;
+	/*border: 1px solid red;*/
 	position: absolute;
 }
 
@@ -52,7 +51,7 @@ body {
 	height: 57px;
 	background-repeat: no-repeat;
 	background-image: url(./images/meatPatty.png);
-	border: 1px solid red;
+	/*border: 1px solid red;*/
 	position: absolute;
 }
 
@@ -62,7 +61,7 @@ body {
 	height: 57px;
 	background-repeat: no-repeat;
 	background-image: url(./images/tomato.png);
-	border: 1px solid red;
+	/*border: 1px solid red;*/
 	position: absolute;
 }
 
@@ -72,7 +71,7 @@ body {
 	height: 57px;
 	background-repeat: no-repeat;
 	background-image: url(./images/bun_top.png);
-	border: 1px solid red;
+	/*border: 1px solid red;*/
 	position: absolute;
 }
 
@@ -82,14 +81,14 @@ body {
 	height: 57px;
 	background-repeat: no-repeat;
 	background-image: url(./images/chilliBomb.png);
-	border: 1px solid red;
+	/*border: 1px solid red;*/
 	position: absolute;
 }
 
 .rect1{
 	top: 20px;
 	left: 32px;
-	border: 1px solid red;
+	/*border: 1px solid red;*/
 	position: relative;
 	width: 80px;
 	height: 30px;
@@ -98,7 +97,7 @@ body {
 .rect2{
 	top: 15px;
 	left: 9px;
-	border: 1px solid blue;
+	/*border: 1px solid blue;*/
 	position: relative;
 	width: 85px;
 	height: 20px;

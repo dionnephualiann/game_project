@@ -49,7 +49,7 @@ interactions.right = false; 	// right arrow key pressed
 //function to spawn food pushes them into the assets array.
 function spawnItem() {
 	//random chooses which asset to spawn
-	var random = Math.floor(Math.random(assets) * (5 - 1 +1)) + 1;
+	var random = Math.floor(Math.random(assets) * (6 - 1 +1)) + 1;
 
 		if (random === 1) {
 			assets.push(new Lettuce(background, settings));
@@ -61,6 +61,8 @@ function spawnItem() {
 			assets.push(new Meat(background, settings));
 		} else if(random === 5) {
 			assets.push(new Chillibomb(background, settings));
+		} else if(random === 6) {
+			assets.push(new TopBun(background, settings));
 		}
 
 }
@@ -84,11 +86,6 @@ function spawnItem() {
         console.log("collision detected!");
         return true;
       }
-
-
-
-
-
 
     }
 

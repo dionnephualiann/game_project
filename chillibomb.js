@@ -13,11 +13,11 @@ var Chillibomb = function(background, settings){
 			this.id = settings.id;
 		}
 
-	// Assigning score 
+	//Points to the Score object for the script.js
 	this.key = 'chilli'
+
 	//this will assign a <div> the new spawned chilliBomb with it's ID to the background.
 	this.chilliBomb = $('<div/>').attr('id', this.id).addClass('chilliBomb')
-
 
  	//this will append the new spawned chilliBomb with it's ID to the background.
 	background.append(this.chilliBomb);
@@ -39,14 +39,30 @@ var Chillibomb = function(background, settings){
 		}
 
 
-	// this sets the movement of the chilliBomb
-	function move() {
-		//Set to automatic. (not controled by player)
-		if(settings.automatic) {
-			//chilliBomb is moving 7px per milliseconds. 
-			$(chilliBombElement).animate({top: "+=15"},1);
+	// this sets the movement of the lettuce
+	this.move = function move(interactions) {
+		if (this.stacked) {
+		// 	**create logic that doesn't call render function
+			if(interactions.left) {
+					this.chilliBomb.animate({left: '-=5'}, 1); 
+				}
+				if(interactions.right) {
+					this.chilliBomb.animate({left: '+=5'}, 1);
+				}
+
+		// 	**create a drawScore Function. print score out using innerHtml
+
 		}
+		//Set to automatic. (not controled by player)
+		else if(!this.stacked) {
+			//lettuce is moving to 15px per milliseconds down the screen.
+			$(chilliBombElement).animate({top: "+=15"},1);
+		} 
+
 	}
+
+
+	
 
 	this.create();
 	this.removeSelf = function() { 
@@ -55,9 +71,9 @@ var Chillibomb = function(background, settings){
 	}
 
 
-	this.render = function(){
+	this.render = function(interactions){
 		//render function updates the movement into the Game Loop.
-		move();
+		this.move(interactions);
 	}
 	
 
