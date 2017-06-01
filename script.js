@@ -52,6 +52,7 @@ function spawnItem() {
 	//random chooses which asset to spawn
 	var random = Math.floor(Math.random(assets) * (6 - 1 + 1)) + 1;
 
+
 		if (random === 1) {
 			assets.push(new Lettuce(background, settings));
 		} else if(random === 2) {

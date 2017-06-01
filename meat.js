@@ -38,6 +38,25 @@ var Meat = function(background, settings){
 
 		}
 
+
+function wall() {
+
+			var meatElementRect = meatElement.getBoundingClientRect();
+
+			var backgroundElm = background.get(0);
+			var backgroundElmRect = backgroundElm.getBoundingClientRect();
+
+			if(meatElementRect.left < backgroundElmRect.left ){
+				meatElement.style.left = '0px';
+			}
+
+			if(meatElementRect.right > backgroundElmRect.right ){
+				meatElement.style.left = backgroundElmRect.width - meatElementRect.width  + 'px';
+			}
+
+	}
+
+
 // this sets the movement of the meat
 	this.move = function move(interactions) {
 		if (this.stacked) {
@@ -54,7 +73,7 @@ var Meat = function(background, settings){
 			//meat is moving to 5px per milliseconds down the screen.
 			$(meatElement).animate({top: "+=7"},1);
 		} 
-
+		wall();
 	}
 	
 

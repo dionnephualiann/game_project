@@ -38,6 +38,23 @@ var TopBun = function(background, settings){
 
 		}
 
+function wall() {
+
+			var topBunElementRect = topBunElement.getBoundingClientRect();
+
+			var backgroundElm = background.get(0);
+			var backgroundElmRect = backgroundElm.getBoundingClientRect();
+
+			if(topBunElementRect.left < backgroundElmRect.left ){
+				topBunElement.style.left = '0px';
+			}
+
+			if(topBunElementRect.right > backgroundElmRect.right ){
+				topBunElement.style.left = backgroundElmRect.width - topBunElementRect.width  + 'px';
+			}
+
+	}
+
 
 	// this sets the movement of the topBun
 	this.move = function move(interactions) {
@@ -46,7 +63,7 @@ var TopBun = function(background, settings){
 			//topBun is moving to 15px per milliseconds down the screen.
 			$(topBunElement).animate({top: "+=12"},1);
 		} 
-
+		wall();
 	}
 
 

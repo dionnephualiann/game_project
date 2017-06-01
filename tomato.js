@@ -38,6 +38,23 @@ var Tomato = function(background, settings){
 
 		}
 
+	function wall() {
+
+			var tomatoElementRect = tomatoElement.getBoundingClientRect();
+
+			var backgroundElm = background.get(0);
+			var backgroundElmRect = backgroundElm.getBoundingClientRect();
+
+			if(tomatoElementRect.left < backgroundElmRect.left ){
+				tomatoElement.style.left = '0px';
+			}
+
+			if(tomatoElementRect.right > backgroundElmRect.right ){
+				tomatoElement.style.left = backgroundElmRect.width - tomatoElementRect.width  + 'px';
+			}
+
+	}
+
 
 	// this sets the movement of the tomato
 	this.move = function move(interactions) {
@@ -55,7 +72,7 @@ var Tomato = function(background, settings){
 			//tomato is moving to 5px per milliseconds down the screen.
 			$(tomatoElement).animate({top: "+=8"},1);
 		} 
-
+		wall();
 	}
 
 

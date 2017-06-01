@@ -37,6 +37,22 @@ var Cheese = function(background, settings){
 
 	}
 
+function wall() {
+
+			var cheeseElementRect = cheeseElement.getBoundingClientRect();
+
+			var backgroundElm = background.get(0);
+			var backgroundElmRect = backgroundElm.getBoundingClientRect();
+
+			if(cheeseElementRect.left < backgroundElmRect.left ){
+				cheeseElement.style.left = '0px';
+			}
+
+			if(cheeseElementRect.right > backgroundElmRect.right ){
+				cheeseElement.style.left = backgroundElmRect.width - cheeseElementRect.width  + 'px';
+			}
+
+	}
 
 	// this sets the movement of the cheese
 	this.move = function move(interactions) {
@@ -54,7 +70,7 @@ var Cheese = function(background, settings){
 			//cheese is moving to 5px per milliseconds down the screen.
 			$(cheeseElement).animate({top: "+=6"},1);
 		} 
-
+		wall();
 	}
 
 

@@ -39,6 +39,23 @@ var Chillibomb = function(background, settings){
 		}
 
 
+	function wall() {
+
+			var chilliBombElementRect = chilliBombElement.getBoundingClientRect();
+
+			var backgroundElm = background.get(0);
+			var backgroundElmRect = backgroundElm.getBoundingClientRect();
+
+			if(chilliBombElementRect.left < backgroundElmRect.left ){
+				chilliBombElement.style.left = '0px';
+			}
+
+			if(chilliBombElementRect.right > backgroundElmRect.right ){
+				chilliBombElement.style.left = backgroundElmRect.width - chilliBombElementRect.width  + 'px';
+			}
+
+	}
+
 	// this sets the movement of the lettuce
 	this.move = function move(interactions) {
 		//Set to automatic. (not controled by player)
@@ -46,7 +63,7 @@ var Chillibomb = function(background, settings){
 			//lettuce is moving to 15px per milliseconds down the screen.
 			$(chilliBombElement).animate({top: "+=15"},1);
 		} 
-
+		wall();
 	}
 
 
