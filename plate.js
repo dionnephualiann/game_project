@@ -55,6 +55,11 @@ function wall() {
 		wall();
 	}
 
+	this.removeSelf = function() { 
+	// Do removal logic 
+	 plate.remove();
+	}
+
 	this.render = function(interactions){
 		move(interactions);
 	}

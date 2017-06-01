@@ -197,8 +197,27 @@ this.render = function(){
 		    	if(offStack[i].key === "chilli") {
 		    		score();
 		    		settings.gameOver = true;
+
+		    		var start =$('<div/>').addClass('start');
 		    		// <div> id 'Background' switches background class and adds the score.
 		    		$("#background").removeClass("background").addClass("score").append($("<div/>").addClass("number").text(settings.score));
+
+		    		$(".score").append(start);
+
+		    		$(start).click(function(){
+						
+						var gameBG= $("#background").removeClass("score").addClass("background")
+						start.remove();
+						for (var i = 0; i < assets.length; i++){
+							assets[i].removeSelf();
+							$(".number").remove()
+						}
+					assets = null;
+					var newGame = new Game();
+					})
+					
+					
+
 		    		// breaks the game loop.
 		    		break;
 		    	}
@@ -250,4 +269,3 @@ window.requestAnimFrame= (function() {
 }
 
 
-var newGame = new Game();

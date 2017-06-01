@@ -92,16 +92,6 @@ h1 {
     clear: both;
 }
 
-.ins04 {
-	height:680px;
-	width: 581px;
-	margin-top: 10px;
-    margin-left: 430px;
-    position: relative;
-    display: block;
-    background-image: url(./images/instruction04.jpg);
-    background-repeat: no-repeat;
-}
 
 .click {
 	height:80px;
@@ -111,10 +101,12 @@ h1 {
 }
 
 .start {
-	height:315px;
-	width: 182px;
+	height:100px;
+	position: absolute;
 	padding-top: 250px;
-    padding-left: 200px;
+    padding-left: 400px;
+    background-image: url(./images/startButton.png);
+    background-repeat: no-repeat;
 }
 
 /* the player avatar */
