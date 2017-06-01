@@ -30,32 +30,19 @@ var TopBun = function(background, settings){
 
 	//this converts the ID number to a string.
 	topBunElement = document.getElementById((this.id).toString()); 
-    topBunElement.style.left = '250px';
+    topBunElement.style.left = '25px';
 
 
 	//Math.random decides where the food will be spawned
-	topBunElement.style.left = Math.floor(Math.random() * (600-250)) + 250 + 'px';
+	topBunElement.style.left = Math.floor(Math.random() * (450-25)) + 25 + 'px';
 
 		}
 
 
 	// this sets the movement of the topBun
 	this.move = function move(interactions) {
-		if (this.stacked) {
-		// 	**create logic that doesn't call render function ON the ingredients including itself.
-		// 	**create another function that will render out the plate.
-		
-		
-			if(interactions.left) {
-						this.topBun.animate({left: '-=5'}, 1); 
-					}
-					if(interactions.right) {
-						this.topBun.animate({left: '+=5'}, 1);
-					}
-			
-		}
 		//Set to automatic. (not controled by player)
-		else if(!this.stacked) {
+		if(!this.stacked) {
 			//topBun is moving to 15px per milliseconds down the screen.
 			$(topBunElement).animate({top: "+=12"},1);
 		} 

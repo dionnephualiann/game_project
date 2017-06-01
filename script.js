@@ -16,7 +16,7 @@ var Game = function(){
  var lettuceSpeed = 8;  // speed of the lettuce
  var tomatoSpeed = 8;
  var cheeseSpeed = 5;
- var walls = false;  // plate cannot go out of the screen
+ var walls = true;  // plate cannot go out of the screen
  var automatic = false; // the plate will not move by itself
  var godmode = false; // allows developer to access any point of the game
 
@@ -27,7 +27,7 @@ var background = $('#background');
 var assets = [];       // All game objects that touches the stack. Those that doesn's meet the condition will fall according to gravity
 var player = new Plate(settings, background);     // The player
 assets[0] = player;
-var Score = { lettuce: 10,
+var Score = { lettuce: 10,  // Score = key : value
       		  meat: 15,
 			  tomato: 20,
 			  cheese: 5,
@@ -50,7 +50,7 @@ interactions.right = false; 	// right arrow key pressed
 //function to spawn food pushes them into the assets array.
 function spawnItem() {
 	//random chooses which asset to spawn
-	var random = Math.floor(Math.random(assets) * (6 - 1 +1)) + 1;
+	var random = Math.floor(Math.random(assets) * (6 - 1 + 1)) + 1;
 
 		if (random === 1) {
 			assets.push(new Lettuce(background, settings));
@@ -91,11 +91,11 @@ function spawnItem() {
     }
 
 
-// Visibility function
+// Visibility function, passing clearAll as the argument 
 	var visibility = function(clearAll) {
 		// i starts at [1] because, plate is already index [0]
 		for (var i = 1; i < assets.length; i++) {
-			//if asset is below 600px
+			//if asset is below 600px OR clearAll() which is established in the render function;
 			assets[i].shouldRemove = (assets[i].boundingBox.offset().top >= 700) || clearAll;
 				// calling the function removeSelf which is .remove() inside the ingredient's js.
  				 if (assets[i].shouldRemove) assets[i].removeSelf()
@@ -165,7 +165,16 @@ this.render = function(){
 		  timer = frame / 60;
 		  if(timer % 2 === 0) {
 		  	spawnItem();
+		  	 } else if (timer % 3 === 0) {
+		  	 spawnItem();	
+		  	 } else if (timer % 4 === 0) {
+		  	 spawnItem();	
+		  	 } else if (timer % 5 === 0) {
+		  	 spawnItem();	
+		  	 } else if (timer % 10 === 0) {
+		  	 spawnItem();	
 		  	 }
+
 		  frame++;
 
 		// Creates an array of items that are currently "on-the-stack"
@@ -174,6 +183,7 @@ this.render = function(){
 		// Creates an array of items that are NOT-on-the-stack
 		var offStack = assets.filter(function(item) { return !item.stacked; })
 
+		// clearAll function set to false before the topBun hits the stack.
 		var clearAll = false;
 		// Loop through all the off the stack items
 		for (var i = 0; i < offStack.length; i++) {
@@ -182,14 +192,18 @@ this.render = function(){
 		    // If the on the stack item and the off the stack item are colliding,
 		    // then we have an effect to handle/make.
 		    if (collision(onStack[j].boundingBox, offStack[i].boundingBox)) {
+		    	// if chilli is stacked, Game over is set to true.
 		    	if(offStack[i].key === "chilli") {
 		    		score();
 		    		settings.gameOver = true;
+		    		// <div> id 'Background' switches background class and adds the score.
 		    		$("#background").removeClass("background").addClass("score").append($("<div/>").addClass("number").text(settings.score));
+		    		// breaks the game loop.
 		    		break;
 		    	}
-
+		    	// if top bun is stacked. 
 		    	if(offStack[i].key === "topBun") {
+		    		// clearAll functions the same way as selfRemove().
 		    		clearAll = true;
 		    	}
 		    	//storing of the score
@@ -203,9 +217,11 @@ this.render = function(){
 		      score();
 		    }
 		  } if(settings.gameOver)
+		  //game loop breaks (refer back to the 'if on-stack === "chilli"' condition)
 		  break;
 		}
-
+		// Calling on the visibility function for all objects  
+		// including those that meets the clear all condition.
 		visibility(clearAll);
 
 		}
@@ -217,7 +233,7 @@ window.requestAnimFrame= (function() {
 		   window.webkitRequestAnimationFrame	||
 		   window.mozRequestAnimationFrame		||
 		   function( callback) {
-		   	window.setTimeout(callback, 1000 / 60);
+		   		window.setTimeout(callback, 1000 / 60);
 		   };
 
 })();

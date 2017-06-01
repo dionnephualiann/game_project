@@ -19,38 +19,47 @@ var Plate = function(settings, background){
 
 	plate.append(this.boundingBox);
 
+	// Walls
+function wall() {
+	  // BG dimensions
+      var w = $(background).width();
+      var h = $(background).height();
 
-	// function walls() { //need to keep it to detect when 2 items are colliding
-	// 	var x_right = parseInt(plateElement.style.left) + parseInt(plateElement.style.width);
-	// 	var x_left = parseInt(plateElement.style.left);
-		
-	// 	var w = parseInt(background.width);
-	// 	var h = parseInt(background.height);
+      if($(plate).offset().left < 0){
+          $(plate).offset().left = '0px';
+      }
 
- // 		if(x_right > w) {
- // 			plateElement.style.right = (w - parseInt(plateElement.style.height)) + 'px';
- // 			 		}
+      if(($(plate).offset().left + $(plate).outerWidth()) > w){
+          $(plate).offset().left = ( w - $(plate).width()) + 'px' ;
+      }
 
- // 		if(x_left < 0) {
- // 			plateElement.style.left = 0 + 'px';
- // 		}
+  }
 
-	// }
+
+
 
 
 // this function is solely for the player to move the plate around manually.
 	function move(interactions) {
+    var gameArea = this.background.getBoundingClientRect();
+
 		if(interactions.left) {
 // jQuery has a library function called "animate" that takes plate and move it -5px 
 // to the left. '1' is the animation time in milliseconds. 
 			plate.animate({left: '-=5'}, 1); 
+			if ($(plate).offset().left < gameArea.left) {
+				$(plate).offset({left: gameArea.left})
+			}
 		}
 		if(interactions.right) {
 			plate.animate({left: '+=5'}, 1);
+			if (($(plate).offset().left + $(plate).outerWidth()) > gameArea.right) {
+				$(plate).offset({left: gameArea.right - $(plate).outerWidth() });
+			}
 		}
-		// if (settings.walls) {
-		// 	walls();
-		// }
+		if (settings.walls) {
+			// wall();
+		}
 	}
 
 	this.render = function(interactions){

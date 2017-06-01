@@ -30,11 +30,11 @@ var Meat = function(background, settings){
 
 	//this converts the ID number to a string.
 	meatElement = document.getElementById((this.id).toString()); 
-    meatElement.style.left = '500px';
+    meatElement.style.left = '25px';
 
 
 	//Math.random decides where the food will be spawned
-	meatElement.style.left = Math.floor(Math.random() * (900-500)) + 500 + 'px';
+	meatElement.style.left = Math.floor(Math.random() * (450-25)) + 25 + 'px';
 
 		}
 
@@ -52,7 +52,7 @@ var Meat = function(background, settings){
 		//Set to automatic. (not controled by player)
 		else if(!this.stacked) {
 			//meat is moving to 5px per milliseconds down the screen.
-			$(meatElement).animate({top: "+=11"},1);
+			$(meatElement).animate({top: "+=7"},1);
 		} 
 
 	}

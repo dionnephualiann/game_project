@@ -30,10 +30,10 @@ var Cheese = function(background, settings){
 
 	//this converts the ID number to a string.
 	cheeseElement = document.getElementById((this.id).toString()); 
-    cheeseElement.style.left = '500px';
+    cheeseElement.style.left = '25px';
 
 	//Math.random decides where the food will be spawned
-	cheeseElement.style.left = Math.floor(Math.random() * (900-500)) + 500 + 'px';
+	cheeseElement.style.left = Math.floor(Math.random() * (450-25)) + 25 + 'px';
 
 	}
 
@@ -52,7 +52,7 @@ var Cheese = function(background, settings){
 		//Set to automatic. (not controled by player)
 		else if(!this.stacked) {
 			//cheese is moving to 5px per milliseconds down the screen.
-			$(cheeseElement).animate({top: "+=7"},1);
+			$(cheeseElement).animate({top: "+=6"},1);
 		} 
 
 	}

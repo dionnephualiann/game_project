@@ -30,11 +30,11 @@ var Tomato = function(background, settings){
 
 	//this converts the ID number to a string.
 	tomatoElement = document.getElementById((this.id).toString()); 
-    tomatoElement.style.left = '500px';
+    tomatoElement.style.left = '25px';
 
 
 	//Math.random decides where the food will be spawned
-	tomatoElement.style.left = Math.floor(Math.random() * (900-500)) + 500 + 'px';
+	tomatoElement.style.left = Math.floor(Math.random() * (450-25)) + 25 + 'px';
 
 		}
 
@@ -53,7 +53,7 @@ var Tomato = function(background, settings){
 		//Set to automatic. (not controled by player)
 		else if(!this.stacked) {
 			//tomato is moving to 5px per milliseconds down the screen.
-			$(tomatoElement).animate({top: "+=11"},1);
+			$(tomatoElement).animate({top: "+=8"},1);
 		} 
 
 	}

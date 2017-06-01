@@ -30,10 +30,10 @@ var Lettuce = function(background, settings){
 	
 	//this converts the ID number to a string.
 	lettuceElement = document.getElementById((this.id).toString()); 
-    lettuceElement.style.left = '250px';
+    lettuceElement.style.left = '25px';
 
 	//Math.random decides where the food will be spawned
-	lettuceElement.style.left = Math.floor(Math.random() * (800-200)) + 200 + 'px';
+	lettuceElement.style.left = Math.floor(Math.random() * (450-25)) + 25 + 'px';
 
 	}
 

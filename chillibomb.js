@@ -30,11 +30,11 @@ var Chillibomb = function(background, settings){
 
 	//this converts the ID number to a string.
 	chilliBombElement = document.getElementById((this.id).toString()); 
-    chilliBombElement.style.left = '250px';
+    chilliBombElement.style.left = '25px';
 
 
 	//Math.random decides where the food will be spawned
-	chilliBombElement.style.left = Math.floor(Math.random() * (800-250)) + 250 + 'px';
+	chilliBombElement.style.left = Math.floor(Math.random() * (450-25)) + 25 + 'px';
 
 		}
 
