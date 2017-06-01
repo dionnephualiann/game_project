@@ -35,7 +35,75 @@ body {
 	font-family: Futura;
 	color: #fffbb7;
 }
-    
+
+.splash {
+	height:680px;
+	width: 581px;
+	margin-top: 10px;
+    margin-left: 430px;
+    position: relative;
+    display: block;
+    background-image: url(./images/splashPage.png);
+    background-repeat: no-repeat;
+}
+
+.ins01 {
+	height:680px;
+	width: 581px;
+	margin-top: 10px;
+    margin-left: 430px;
+    position: relative;
+    display: block;
+    background-image: url(./images/instruction01.jpg);
+    background-repeat: no-repeat;
+}
+
+.ins02 {
+	height:680px;
+	width: 581px;
+	margin-top: 10px;
+    margin-left: 430px;
+    position: relative;
+    display: block;
+    background-image: url(./images/instruction02.jpg);
+    background-repeat: no-repeat;
+}
+
+.ins03 {
+	height:680px;
+	width: 581px;
+	margin-top: 10px;
+    margin-left: 430px;
+    position: relative;
+    display: block;
+    background-image: url(./images/instruction03.jpg);
+    background-repeat: no-repeat;
+}
+
+.ins04 {
+	height:680px;
+	width: 581px;
+	margin-top: 10px;
+    margin-left: 430px;
+    position: relative;
+    display: block;
+    background-image: url(./images/instruction04.jpg);
+    background-repeat: no-repeat;
+}
+
+.click {
+	height:80px;
+	width: 132px;
+	padding-left: 420px;
+    padding-top: 550px;
+}
+
+.start {
+	height:315px;
+	width: 182px;
+	padding-top: 250px;
+    padding-left: 200px;
+}
 
 /* the player avatar */
 .plate {
