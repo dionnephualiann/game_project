@@ -92,19 +92,12 @@ h1 {
     clear: both;
 }
 
-
-.click {
-	height:80px;
-	width: 132px;
-	padding-left: 420px;
-    padding-top: 550px;
-}
-
 .start {
-	height:100px;
+	height: 119px;
+	width: 205px;
 	position: absolute;
-	padding-top: 250px;
-    padding-left: 400px;
+	margin-top: 540px;
+    margin-left: 350px;
     background-image: url(./images/startButton.png);
     background-repeat: no-repeat;
 }
