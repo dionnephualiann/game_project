@@ -58,7 +58,7 @@ function wall() {
 			}
 		}
 		if (settings.walls) {
-			// wall();
+			wall();
 		}
 	}
 
