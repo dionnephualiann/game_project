@@ -61,7 +61,7 @@ var Chillibomb = function(background, settings){
 		//Set to automatic. (not controled by player)
 		if(!this.stacked) {
 			//lettuce is moving to 15px per milliseconds down the screen.
-			$(chilliBombElement).animate({top: "+=15"},1);
+			$(chilliBombElement).animate({top: "+=12"},1);
 		} 
 		wall();
 	}
