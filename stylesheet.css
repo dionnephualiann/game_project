@@ -2,8 +2,14 @@ body {
 	background-color: #1b1b1b;
 	background-image: url(./images/bg.png);
 	background-repeat: no-repeat;
-	object-fit: cover;
+	background-size: cover;
 	position: fixed;
+	margin: 0px;
+	padding: 0px;
+ }
+
+ .container {
+ 	margin: 0px;
  }
 
 /*   Game Pages   */
