@@ -1,9 +1,10 @@
 body {
 	background-color: #1b1b1b;
+	background-image: url(./images/bg.png);
+	background-repeat: no-repeat;
+	object-fit: cover;
+	position: fixed;
  }
-.container {
-	background-color: #1b1b1b;
-}
 
 /*   Game Pages   */
 
