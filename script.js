@@ -35,7 +35,6 @@ var Score = { lettuce: 10,  // Score = key : value
 			  chilli: 0,
 			};
 
-
 var frame = 0;         // Frames since the start of the game
 var timer = 0;
 
@@ -45,6 +44,7 @@ var timer = 0;
 var interactions= {};
 interactions.left = false; 		// left arrow key pressed
 interactions.right = false; 	// right arrow key pressed
+
 
 
 //function to spawn food pushes them into the assets array.
@@ -70,7 +70,7 @@ function spawnItem() {
 }
 
 
-//collision detection *** has an overlapping issue
+//collision detection 
   	var collision = function(rect1, rect2){
 
       var rect1Native = rect1.get(0);
@@ -84,9 +84,11 @@ function spawnItem() {
           rect1NativeRect.top < rect2NativeRect.top + rect2NativeRect.height &&
           rect1NativeRect.height + rect1NativeRect.top > rect2NativeRect.top)
       {
+      	playSound();
 
         console.log("collision detected!");
         return true;
+
       }
 
     }
@@ -147,11 +149,17 @@ function setupEvents (){
 
 }
 
+//Sound effects
+function playSound () {
+ 		var sound = document.getElementById('soundFX')
+ 		sound.currentTime = 0;
+ 		sound.play();
+	}
+
 
 // Startup the game
 function init(){
       setupEvents();
-
     }
 
 
@@ -191,6 +199,7 @@ this.render = function(){
 		  // For each offstack item loop through each on stack item to see if they are colliding with them.
 		  for (var j = 0; j < onStack.length; j++) {
 		    // If the on the stack item and the off the stack item are colliding,
+		    
 		    // then we have an effect to handle/make.
 		    if (collision(onStack[j].boundingBox, offStack[i].boundingBox)) {
 		    	// if chilli is stacked, Game over is set to true.
@@ -198,25 +207,30 @@ this.render = function(){
 		    		score();
 		    		settings.gameOver = true;
 
+		    		// add a start button
 		    		var start =$('<div/>').addClass('start');
 		    		// <div> id 'Background' switches background class and adds the score.
 		    		$("#background").removeClass("background").addClass("score").append($("<div/>").addClass("number").text(settings.score));
 
 		    		$(".score").append(start);
-
+		    		//when the start button is clicked
 		    		$(start).click(function(){
-						
+						// goes back to the game screen
 						var gameBG= $("#background").removeClass("score").addClass("background")
+						// remove start button
 						start.remove();
+						//remove all assets from the previous game
 						for (var i = 0; i < assets.length; i++){
 							assets[i].removeSelf();
+							//remove of score
 							$(".number").remove()
 						}
+					//assets array should be empty
 					assets = null;
+					//launch of a new game
 					var newGame = new Game();
+					
 					})
-					
-					
 
 		    		// breaks the game loop.
 		    		break;

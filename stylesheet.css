@@ -5,6 +5,8 @@ body {
 	background-color: #1b1b1b;
 }
 
+/*   Game Pages   */
+
 .background {
 	height:680px;
 	width: 581px;
@@ -46,6 +48,8 @@ body {
     background-image: url(./images/splashPage.png);
     background-repeat: no-repeat;
 }
+
+/*   Side Bar   */
 
 h1 {
 	margin-top: 45px;
@@ -92,6 +96,8 @@ h1 {
     clear: both;
 }
 
+/*   button   */
+
 .start {
 	height: 119px;
 	width: 205px;
@@ -103,6 +109,7 @@ h1 {
 }
 
 /* the player avatar */
+
 .plate {
     width: 140px;
     height: 80px;
@@ -115,6 +122,8 @@ h1 {
     position: absolute;
     background-image: url(./images/plateBun.png);
 }
+
+/*   Game assets   */
 
 .lettuce {
 	top: 0px;
@@ -182,6 +191,8 @@ h1 {
 	position: absolute;
 }
 
+/*   bounding box   */
+
 .rect1{
 	top: 20px;
 	left: 32px;
@@ -202,11 +213,3 @@ h1 {
 	height: 20px;
 }
 
-/*#start {
-	top: 300px;
-	width: 315px;
-	height: 182px;
-	display: inline;
-	background-image: url(./images/startButton.png);
-	background-repeat: no-repeat;
-}*/

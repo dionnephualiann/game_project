@@ -6,8 +6,10 @@
 	<script src="https://code.jquery.com/jquery-2.2.4.js""></script>
 </head>
 <body>
- <div class="container">
+  <div class="container">
+
  <!-- Instructions -->
+
  <h1>Instructions</h1>
 	<div class =ins01>
 		<img src="./images/instruction01.png">
@@ -18,15 +20,22 @@
 	<div class =ins03>
 		<img src="./images/instruction03.png">
 	</div> 	
+
  	<!-- Game BG -->
 
  	<div class="background" id="background">
-	 <!-- Audio -->
- <audio autoplay loop>
-  <source src="budapest-restaurant-2.wav" type="audio/wav">
-</audio>
+
+		 <!-- Audio -->
+
+		<audio id="music" autoplay loop>
+	 	 <source src="./sounds/restaurant.wav" type="audio/wav">
+		</audio>
+		<audio id="soundFX" src="./sounds/squish.wav"></audio>
+
+
  	</div>
- </div>
+
+  </div>
 
 <script src="./plate.js"></script>
 <script src="./item.js"></script>
@@ -37,6 +46,7 @@
 <script src="./topBun.js"></script>
 <script src="./script.js"></script>
  <script src="./instruction.js"></script>
+
 </body>
 </html>
                 
