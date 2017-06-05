@@ -19,4 +19,15 @@ splashPage.append(start);
 		
 }
 
+var audio = document.getElementById("music"); 
+
+document.getElementById("mute").addEventListener('click', function (event) {
+  
+	if (audio.paused) {
+  	audio.play();
+} else {
+    audio.pause(); 
+}
+});
+
 new Instruction();

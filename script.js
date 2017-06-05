@@ -156,6 +156,19 @@ function playSound () {
  		sound.play();
 	}
 
+var audio = document.getElementById("music"); 
+
+document.getElementById("mute").addEventListener('click', function (event) {
+  
+	if (audio.paused) {
+  	alert(audio.paused);
+  	audio.play();
+} else {
+    audio.pause(); 
+}
+});
+
+
 
 // Startup the game
 function init(){
